@@ -1,0 +1,131 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"title": "Salesforce",
+		"description": "API for ap6.salesforce.com",
+		"version": "0.0.0"
+	},
+	"host": "ap6.salesforce.com",
+	"schemes": [
+		"https"
+	],
+	"paths": {
+		"/services/data/v47.0/query": {
+			"get": {
+				"tags": [
+					"Services"
+				],
+				"description": "Query",
+				"operationId": "query",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "q",
+						"in": "query",
+						"description": "Query",
+						"required": false,
+						"type": "string",
+						"x-example": "query"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Query"
+						},
+						"examples": {
+							"application/json": {
+								"totalSize": 1,
+								"done": true,
+								"records": [
+									{
+										"attributes": {
+											"type": "Account",
+											"url": "/services/data/v47.0/sobjects/Account/0012800000KOpnKAAT"
+										},
+										"Id": "0012800000KOpnKAAT",
+										"Name": "Anglican Retirement Villages"
+									}
+								]
+							}
+						}
+					}
+				},
+				"security": []
+			}
+		}
+	},
+	"definitions": {
+		"Query": {
+			"description": "Model for Query",
+			"required": [
+				"done"
+			],
+			"properties": {
+				"done": {
+					"type": "boolean",
+					"x-example": "true"
+				},
+				"records": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Records"
+					},
+					"x-example": "[\n  {\n    \"attributes\": {\n      \"type\": \"Account\",\n      \"url\": \"/services/data/v47.0/sobjects/Account/0012800000KOpnKAAT\"\n    },\n    \"Id\": \"0012800000KOpnKAAT\",\n    \"Name\": \"Anglican Retirement Villages\"\n  }\n]"
+				},
+				"totalSize": {
+					"type": "integer",
+					"format": "int32",
+					"x-example": "1"
+				}
+			}
+		},
+		"Attributes": {
+			"description": "Model for Attributes",
+			"required": [
+				"type"
+			],
+			"properties": {
+				"type": {
+					"type": "string",
+					"x-example": "Account"
+				},
+				"url": {
+					"type": "string",
+					"x-example": "/services/data/v47.0/sobjects/Account/0012800000KOpnKAAT"
+				}
+			}
+		},
+		"Records": {
+			"description": "Model for Records",
+			"required": [
+				"attributes"
+			],
+			"properties": {
+				"attributes": {
+					"$ref": "#/definitions/Attributes",
+					"x-example": "{\n  \"type\": \"Account\",\n  \"url\": \"/services/data/v47.0/sobjects/Account/0012800000KOpnKAAT\"\n}"
+				},
+				"Id": {
+					"type": "string",
+					"x-example": "0012800000KOpnKAAT"
+				},
+				"Name": {
+					"type": "string",
+					"x-example": "Anglican Retirement Villages"
+				}
+			}
+		}
+	},
+	"securityDefinitions": {},
+	"security": [],
+	"tags": [
+		{
+			"name": "Services",
+			"description": "Operations about Services"
+		}
+	]
+}
