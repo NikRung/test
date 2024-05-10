@@ -1,0 +1,146 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "MS Graph API",
+        "description": "MS Graph API for K2",
+        "version": "1.0"
+    },
+    "host": "graph.microsoft.com",
+    "schemes": [
+        "https"
+    ],
+    "paths": {
+        "/v1.0/sites/{siteid}/drives/{driveId}/root/children/{filename}": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "siteid",
+                        "description": "This is the site ID for the Sharepoint Site",
+                        "required": true,
+                        "in": "path",
+                        "type": "string"
+                    },
+                    {
+                        "name": "driveId",
+                        "description": "This is the drive ID for Sharepoint",
+                        "required": true,
+                        "in": "path",
+                        "type": "string"
+                    },
+                    {
+                        "name": "filename",
+                        "description": "This is the filename if it does not contain a parenthesis",
+                        "required": true,
+                        "in": "path",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/file"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1.0/sites/{siteid}/drives/{driveId}/root/search(q='{filename}')": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "siteid",
+                        "description": "This is the site ID for the Sharepoint Site",
+                        "required": true,
+                        "in": "path",
+                        "type": "string"
+                    },
+                    {
+                        "name": "driveId",
+                        "description": "This is the drive ID for Sharepoint",
+                        "required": true,
+                        "in": "path",
+                        "type": "string"
+                    },
+                    {
+                        "name": "filename",
+                        "description": "This is the filename if it does not contain a parenthesis",
+                        "required": true,
+                        "in": "path",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/file"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1.0/sites/{siteid}/drives/{driveId}/items/{itemId}/preview": {
+            "post": {
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "siteid",
+                        "description": "This is the site ID for the Sharepoint Site",
+                        "required": true,
+                        "in": "path",
+                        "type": "string"
+                    },
+                    {
+                        "name": "driveId",
+                        "description": "This is the drive ID for Sharepoint",
+                        "required": true,
+                        "in": "path",
+                        "type": "string"
+                    },
+                    {
+                        "name": "itemId",
+                        "description": "This is the item id of the file from SharePoint",
+                        "required": true,
+                        "in": "path",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/fileInfo"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "file": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "format": "string"
+                }
+            }
+        },
+        "fileInfo": {
+            "properties": {
+                "getUrl": {
+                    "type": "string",
+                    "format": "string"
+                }
+            }
+        }
+    }
+}
